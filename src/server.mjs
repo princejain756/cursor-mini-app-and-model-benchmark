@@ -59,8 +59,7 @@ if (process.argv.includes("--benchmark")) {
   process.exit(0);
 }
 
-const PORT = Number(process.env.PORT || 4580);
-http.createServer((req, res) => {
+export function requestHandler(req, res) {
   res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
   res.end(`<!DOCTYPE html>
 <html lang="en">
@@ -94,7 +93,7 @@ http.createServer((req, res) => {
         Challenge 1: Smart Tip & Split Mini-App + Challenge 2: Cursor Model Benchmark
       </h1>
       <p style="font-size:12.5px;color:#94a3b8;margin-top:4px;">
-        Scaffolded, debugged, and benchmarked across Grok 4.7, Composer 2.5, and Claude Sonnet 4.5
+        Scaffolded, debugged, and benchmarked across Grok 4.7, Composer 2.5, and Claude Sonnet 4.5 · Live at cursor-bench.prince.sh
       </p>
     </div>
     <button onclick="document.body.style.background = document.body.style.background === 'rgb(248, 250, 252)' ? '#0a0d14' : '#f8fafc'" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:12px;">
@@ -181,6 +180,11 @@ http.createServer((req, res) => {
   </script>
 </body>
 </html>`);
-}).listen(PORT, () => {
-  console.log(`Cursor Mini App & Model Benchmark running at http://localhost:${PORT}`);
-});
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const PORT = Number(process.env.PORT || 4580);
+  http.createServer(requestHandler).listen(PORT, () => {
+    console.log(`Cursor Mini App & Model Benchmark running at http://localhost:${PORT}`);
+  });
+}
