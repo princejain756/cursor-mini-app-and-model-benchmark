@@ -182,6 +182,8 @@ export function requestHandler(req, res) {
 </html>`);
 }
 
+export default requestHandler;
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const PORT = Number(process.env.PORT || 4580);
   http.createServer(requestHandler).listen(PORT, () => {
