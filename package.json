@@ -1,0 +1,12 @@
+{
+  "name": "cursor-mini-app-and-model-benchmark",
+  "version": "1.0.0",
+  "description": "Smart Tip & Split Mini App and 3-Model Cursor Benchmark (Grok 4.7, Composer 2.5, Claude Sonnet 4.5) built for MLH Global Hack Week: Builders Week",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "benchmark": "node src/server.mjs --benchmark"
+  },
+  "author": "Prince Jain",
+  "license": "MIT"
+}
